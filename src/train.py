@@ -29,10 +29,11 @@ if __name__ == "__main__":
     
     if config['mode']=="train":
         dataloader_tr = []
-        batch_size = [8, 8, 8, 4, 2, 1]
-        max_frames = [4, 8, 16, 32, 64, 128]
-        min_frames = [1, 4, 8, 16, 32, 64]
+        batch_size = [8, 8, 8, 4]#, 2, 1]
+        max_frames = [4, 8, 16, 32]#, 64, 128]
+        min_frames = [1, 4, 8, 16]#, 32, 64]
         for i in range(len(batch_size)):
+            print(i)
             dataloader_tr.append(get_as_dataloader(config, batch_size[i], 
                                                    'train', 'train', 
                                                    min_frames[i], max_frames[i]))

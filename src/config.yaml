@@ -1,6 +1,6 @@
 # training hyperparameters
-lr: 0.001
-num_epochs: 100
+lr: 0.0002
+num_epochs: 200
 # architectural 
 embedding_dim: 128
 encoder_pretrained: true
@@ -11,11 +11,11 @@ use_gated: true
 batch_accum_iters: 2
 label_scheme_name: mild_mod
 num_classes: 3
-view: all
+view: plaxpsax
 view_scheme_name: three_class
 # program setting
 log_dir: ../logs
-mode: train
-model_load_dir: null
+mode: test
+model_load_dir: grateful-universe-4
 use_cuda: true
 use_wandb: false

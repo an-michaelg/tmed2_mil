@@ -312,8 +312,8 @@ class Network(object):
                 d['pred'].append(pred.cpu().numpy()[0])
                 d['conf'].append(conf.cpu().numpy()[0])
                 d['ent'].append(ent.cpu().numpy()[0])
-                if attns:
-                    d['attn'].append(attns.cpu().numpy()[0][n])
+                if attns is not None:
+                    d['attn'].append(attns.cpu().numpy()[n].squeeze())
                 else:
                     d['attn'].append(1/logits.size(0))
         
