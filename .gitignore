@@ -1,0 +1,6 @@
+# ignore log files
+/logs
+/src/wandb
+# ignore pycache
+/**/.ipynb_checkpoints
+/**/__pycache__

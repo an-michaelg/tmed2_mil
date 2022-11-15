@@ -1,0 +1,21 @@
+# training hyperparameters
+lr: 0.001
+num_epochs: 100
+# architectural 
+embedding_dim: 128
+encoder_pretrained: true
+dense_hidden_dim: 128
+use_attention: true
+use_gated: true
+# data settings
+batch_accum_iters: 2
+label_scheme_name: mild_mod
+num_classes: 3
+view: all
+view_scheme_name: three_class
+# program setting
+log_dir: ../logs
+mode: train
+model_load_dir: null
+use_cuda: true
+use_wandb: false
