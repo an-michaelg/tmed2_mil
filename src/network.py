@@ -14,6 +14,7 @@ from tqdm import tqdm
 import wandb
 
 from get_model import GatedAttentionClassifier, count_module_params
+from tmed_patientloader import get_label_weights
 
 RESOLUTION = 112
 
@@ -33,6 +34,7 @@ class Network(object):
             self.batch_accum_iters = 1
 
         self.num_classes = config['num_classes']
+        self.label_weights = torch.tensor(get_label_weights(config['label_scheme_name']))
         
         self.model = GatedAttentionClassifier('WideResnet-28-2',
                                               RESOLUTION,
@@ -56,6 +58,7 @@ class Network(object):
             
         if self.use_cuda:
             self.model = self.model.cuda()
+            self.label_weights = self.label_weights.cuda()
             
         self.optimizer, self.scheduler = self.configure_optimizers()
 
@@ -166,7 +169,7 @@ class Network(object):
             agg_logits = torch.sum(weighted_logits, dim=0) # BxC
         else:
             agg_logits = torch.mean(logits, dim=0)
-        loss = F.cross_entropy(agg_logits, targets)
+        loss = F.cross_entropy(agg_logits, targets, weight=self.label_weights)
         return loss
         
     # obtain summary statistics of

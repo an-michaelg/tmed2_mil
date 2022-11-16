@@ -15,7 +15,7 @@ view: plaxpsax
 view_scheme_name: three_class
 # program setting
 log_dir: ../logs
-mode: test
-model_load_dir: grateful-universe-4
+mode: train
+model_load_dir: null
 use_cuda: true
-use_wandb: false
+use_wandb: true

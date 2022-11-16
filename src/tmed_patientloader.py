@@ -42,6 +42,13 @@ label_schemes: Dict[str, Dict[str, Union[int, float]]] = {
     'five_class': {'no_AS': 0, 'mild_AS': 1, 'mildtomod_AS': 2, 'moderate_AS': 3, 'severe_AS': 4},
 }
 
+label_schemes_weights: Dict[str, List[float]] = {
+    'binary': [2.368, 0.634],
+    'mild_mod': [1.579, 1.165, 0.667],
+    'mod_severe': [1.579, 0.649, 1.212],
+    'four_class': [1.184, 0.874, 1.096, 0.909],
+    'five_class': [0.947, 0.828, 4.5, 0.878, 0.727]}
+
 #view_scheme = {'PLAX':0, 'PSAX':1, 'A2C':2, 'A4C':3, 'A4CorA2CorOther':4}
 view_schemes: Dict[str, Dict[str, Union[int, float]]] = {
     'three_class': {'PLAX':0, 'PSAX':1, 'A2C':2, 'A4C':2, 'A4CorA2CorOther':2},
@@ -58,6 +65,8 @@ class_labels: Dict[str, List[str]] = {
     'five_class': ['No AS', 'Mild', 'Mild-mod', 'Moderate', 'Severe']
 }
 
+def get_label_weights(scheme):
+    return label_schemes_weights[scheme]
 
 def get_as_dataloader(config, batch_size, split, mode, min_frames=0, max_frames=128):
     '''
